@@ -27,7 +27,7 @@ public class AboutFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
-    View view = inflater.inflate(R.layout.fragment_about, container, false);
+    View view = inflater.inflate(R.layout.fragment_webview, container, false);
     return(view);
   }
 
@@ -35,7 +35,7 @@ public class AboutFragment extends Fragment {
   public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
-    WebView webView = (WebView) getActivity().findViewById(R.id.webViewAbout);
+    WebView webView = (WebView) getActivity().findViewById(R.id.webView);
     webView.loadUrl("file:///android_asset/html/about.html");
   }
 }

@@ -17,7 +17,9 @@ public class ClientFragment extends Fragment {
 
   public static final String FRAGMENT_TAG = "TAG_CLIENT";
 
-  private SwitchFragmentListener switchFragmentListener;
+  private UrlInterceptListener switchFragmentListener;
+
+  private WebView webView;
 
   /**
    * mandatory empty ctor
@@ -29,13 +31,13 @@ public class ClientFragment extends Fragment {
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
-    switchFragmentListener = (SwitchFragmentListener) activity;
+    switchFragmentListener = (UrlInterceptListener) activity;
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
-    View view = inflater.inflate(R.layout.fragment_client, container, false);
+    View view = inflater.inflate(R.layout.fragment_webview, container, false);
     return(view);
   }
 
@@ -43,7 +45,7 @@ public class ClientFragment extends Fragment {
   public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
-    WebView webView = (WebView) getActivity().findViewById(R.id.webViewClient);
+    webView = (WebView) getActivity().findViewById(R.id.webView);
     webView.getSettings().setJavaScriptEnabled(true);
     webView.setWebViewClient(new DemoWebViewClient(switchFragmentListener));
     webView.loadUrl("http://www.digiburo.com/mobi/db_index.html");

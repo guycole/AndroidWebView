@@ -3,7 +3,7 @@ package com.digiburo.example.wvdemo.app;
 /**
  * @author gsc
  */
-public interface SwitchFragmentListener {
+public interface UrlInterceptListener {
 
   /**
    * Switch fragment based upon intercepted URL

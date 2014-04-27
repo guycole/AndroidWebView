@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 
 import com.digiburo.example.wvdemo.R;
 
@@ -13,7 +14,13 @@ import com.digiburo.example.wvdemo.R;
 public class TabHelper implements ActionBar.TabListener {
 
   //
-  private MainActivity mainActivity;
+  private final String LOG_TAG = getClass().getName();
+
+  //
+  private final MainActivity mainActivity;
+
+  //
+  private String currentFragmentTag = AboutFragment.FRAGMENT_TAG;
 
   //
   private ActionBar.Tab aboutTab;
@@ -22,11 +29,15 @@ public class TabHelper implements ActionBar.TabListener {
   private ActionBar.Tab simpleTab;
 
   //
-  private AboutFragment aboutFragment;
-  private ClientFragment clientFragment;
-  private JavaScriptFragment javaScriptFragment;
-  private SimpleFragment simpleFragment;
+  private final AboutFragment aboutFragment;
+  private final ClientFragment clientFragment;
+  private final JavaScriptFragment javaScriptFragment;
+  private final SimpleFragment simpleFragment;
 
+  /**
+   * ctor
+   * @param activity
+   */
   public TabHelper(MainActivity activity) {
     mainActivity = activity;
 
@@ -43,6 +54,8 @@ public class TabHelper implements ActionBar.TabListener {
    */
   @Override
   public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    Log.d(LOG_TAG, "tabSelected:" + tab.getTag());
+
     if (tab.getTag().equals(AboutFragment.FRAGMENT_TAG)) {
       fragmentTransaction.add(R.id.layoutFragment01, aboutFragment, AboutFragment.FRAGMENT_TAG);
     } else if (tab.getTag().equals(ClientFragment.FRAGMENT_TAG)) {
@@ -54,6 +67,8 @@ public class TabHelper implements ActionBar.TabListener {
     } else {
       throw new IllegalArgumentException("unknown tab:" + tab.getTag());
     }
+
+    currentFragmentTag = tab.getTag().toString();
   }
 
   /**
@@ -63,6 +78,8 @@ public class TabHelper implements ActionBar.TabListener {
    */
   @Override
   public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    Log.d(LOG_TAG, "tabUnSelected:" + tab.getTag());
+
     if (tab.getTag().equals(AboutFragment.FRAGMENT_TAG)) {
       fragmentTransaction.remove(aboutFragment);
     } else if (tab.getTag().equals(ClientFragment.FRAGMENT_TAG)) {
@@ -128,6 +145,14 @@ public class TabHelper implements ActionBar.TabListener {
     actionBar.addTab(clientTab);
     actionBar.addTab(javaScriptTab);
     actionBar.addTab(simpleTab);
+  }
+
+  /**
+   * Currently selected tab fragment
+   * @return currently selected tab fragment
+   */
+  public String getCurrentTabFragmentTag() {
+    return currentFragmentTag;
   }
 }
 

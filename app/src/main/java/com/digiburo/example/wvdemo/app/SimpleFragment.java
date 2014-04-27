@@ -26,7 +26,7 @@ public class SimpleFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
-    View view = inflater.inflate(R.layout.fragment_simple, container, false);
+    View view = inflater.inflate(R.layout.fragment_webview, container, false);
     return(view);
   }
 
@@ -34,7 +34,7 @@ public class SimpleFragment extends Fragment {
   public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
 
-    WebView webView = (WebView) getActivity().findViewById(R.id.webViewSimple);
+    WebView webView = (WebView) getActivity().findViewById(R.id.webView);
     webView.getSettings().setJavaScriptEnabled(true);
     webView.loadUrl("http://www.digiburo.com/mobi/db_index.html");
   }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<!--
+  Title:bridge.html
+  Description:demonstrate javascript invoking android platform
+  Development Environment:OSX 10.9.2
+  Legalise:Copyright (C) 2014 DigiBuro, INC.
+  Author:G.S. Cole (digiburo at gmail dot com)
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" debug="true">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type="text/javascript">
+      function generateAlert() {
+        <!-- alert requires WebChromeClient -->
+        alert("from javaScript");
+      }
+    </script>
+
+    <script type="text/javascript">
+      function generateLog() {
+        <!-- write to android log -->
+        demoJavaScript.simpleLogEntry("text from javaScript");
+
+        <!-- console requires WebChromeClient -->
+        var string1 = demoJavaScript.simpleString();
+        console.log(string1);
+      }
+    </script>
+
+    <script type="text/javascript">
+      function generatePrime() {
+        var result = demoJavaScript.generatePrimes(25);
+        console.log(result);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <input value="generateLog" type="button" name="generateLog" id="buttonLog" onclick="javascript:return generateLog();" />
+      <input value="generateAlert" type="button" name="generateAlert" id="buttonAlert" onclick="javascript:return generateAlert();" />
+      <input value="generatePrime" type="button" name="generatePrime" id="buttonPrime" onclick="javascript:return generatePrime();" />
+    </div>
+  </body>
+</html>

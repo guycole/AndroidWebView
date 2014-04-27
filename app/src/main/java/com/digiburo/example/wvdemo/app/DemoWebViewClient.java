@@ -20,14 +20,14 @@ public class DemoWebViewClient extends WebViewClient {
   private final String LOG_TAG = getClass().getName();
 
   //
-  private SwitchFragmentListener switchFragmentListener;
+  private UrlInterceptListener urlInterceptListener;
 
   /**
    * ctor
    * @param arg
    */
-  public DemoWebViewClient(SwitchFragmentListener arg) {
-    switchFragmentListener = arg;
+  public DemoWebViewClient(UrlInterceptListener arg) {
+    urlInterceptListener = arg;
   }
 
   @Override
@@ -93,7 +93,7 @@ public class DemoWebViewClient extends WebViewClient {
 
     if (url.equals("http://www.digiburo.com/mobi/db_news.html")) {
       // news switches fragments
-      switchFragmentListener.onUrlIntercept();
+      urlInterceptListener.onUrlIntercept();
       return true;
     } else if (url.equals("http://www.digiburo.com/mobi/db_products.html")) {
       // products reloads index
